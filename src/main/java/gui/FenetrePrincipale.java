@@ -15,6 +15,7 @@ public class FenetrePrincipale {
     private JLabel erreurImperial;
     private JLabel erreurDouble;
     private JComboBox precisionBox;
+    private JLabel precisionLabel;
 
     private int precision = 128 ;
 
@@ -22,6 +23,7 @@ public class FenetrePrincipale {
         erreurImperial.setVisible(false);
         erreurDouble.setVisible(false);
 
+        precisionBox.setSelectedItem(String.valueOf(precision));
 
         textField2.addActionListener(new ActionListener() {
             @Override
@@ -79,6 +81,15 @@ public class FenetrePrincipale {
     }
 
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                creerEtMontrerFenetrePrincipale();
+            }
+        });
+    }
+
+    public static void creerEtMontrerFenetrePrincipale() {
         JFrame frame = new JFrame("Convertisseur") ;
         frame.setContentPane(new FenetrePrincipale().fenetre);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

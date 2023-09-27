@@ -25,6 +25,18 @@ class MesuresImperialesTest {
     }
 
     @Test
+    void negative_measures() {
+        MesuresImperiales test = new MesuresImperiales(-2, 1, 4) ;
+        assertEquals("-1 -3/4", test.to_string()) ;
+
+        MesuresImperiales test1 = new MesuresImperiales(2, -15, 4) ;
+        assertEquals("-1 -3/4", test1.to_string()) ;
+
+        MesuresImperiales test2 = new MesuresImperiales(2, 15, -4) ;
+        assertEquals("-1 -3/4", test2.to_string()) ;
+    }
+
+    @Test
     void float_to_fraction() {
         MesuresImperiales m = new MesuresImperiales(0.5, 128) ;
         assertEquals("1/2", m.to_string()) ;
@@ -90,5 +102,19 @@ class MesuresImperialesTest {
     void multiplierParUnReel() {
         assertEquals("1 7/32", m2716.multiplierParUnReel(0.5, 128).to_string()) ;
         assertEquals("1/8", m12.multiplierParUnReel(0.25, 128).to_string()) ;
+    }
+
+    @Test
+    public void value_of() {
+        MesuresImperiales test = MesuresImperiales.value_of("4 5/16") ;
+        MesuresImperiales attendu = new MesuresImperiales(4, 5, 16) ;
+        assertTrue(test.egal(attendu)) ;
+
+        MesuresImperiales test2 = MesuresImperiales.value_of("138/32") ;
+        assertTrue(test2.egal(attendu)) ;
+
+        MesuresImperiales test3 = MesuresImperiales.value_of("4") ;
+        MesuresImperiales attendu3 = new MesuresImperiales(4) ;
+        assertTrue(test3.egal(attendu3)) ;
     }
 }

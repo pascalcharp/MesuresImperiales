@@ -43,6 +43,14 @@ class MesuresImperialesTest {
 
         MesuresImperiales m12116 = new MesuresImperiales(12.0625, 128) ;
         assertEquals("12 1/16", m12116.to_string()) ;
+
+        double x = 1.0 / 3.0 ;
+
+        MesuresImperiales m13 = new MesuresImperiales(x, 128) ;
+        assertEquals("43/128", m13.to_string()) ;
+
+        MesuresImperiales m1364 = new MesuresImperiales(x, 64) ;
+        assertEquals("21/64", m1364.to_string()) ;
     }
 
     @Test
@@ -65,6 +73,8 @@ class MesuresImperialesTest {
         assertEquals(2.4375, m2716.to_double());
         assertEquals(8.140625, m8964.to_double());
         assertEquals(5.984375, m56364.to_double()) ;
+        assertEquals(-2.4375, new MesuresImperiales(-2, -7, 16).to_double()) ;
+        assertEquals(-2.4375, new MesuresImperiales(-2, 7, -16).to_double()) ;
     }
 
     @Test
@@ -72,6 +82,9 @@ class MesuresImperialesTest {
         assertTrue(m1.egal(m1)) ;
         assertTrue(m0.egal(m0)) ;
         assertTrue(m56364.egal(m56364)) ;
+        assertFalse(m1.egal(m0)) ;
+        assertFalse(m0.egal(m1)) ;
+        assertFalse(m56364.egal(m2716)) ;
     }
 
     @Test
